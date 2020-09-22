@@ -15,6 +15,12 @@
 
 [p6](https://github.com/aprz512/Android-Crack/tree/master/practice/p6)
 
+[p7](https://github.com/aprz512/Android-Crack/tree/master/practice/p7)
+
+[p8](https://github.com/aprz512/Android-Crack/tree/master/practice/p9)
+
+[p9](https://github.com/aprz512/Android-Crack/tree/master/practice/p9)
+
 继续更新中...
 
 
