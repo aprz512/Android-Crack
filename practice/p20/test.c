@@ -24,3 +24,5 @@ int main()
 
 	return 0;
 }
+
+// gcc test.c -o test.o
