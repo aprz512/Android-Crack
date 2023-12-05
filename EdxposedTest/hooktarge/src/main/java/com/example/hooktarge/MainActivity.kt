@@ -27,6 +27,8 @@ class MainActivity : ComponentActivity() {
         HookTarget1()
         HookTarget1("a5right", 1)
         HookTarget2()
+        val target3 = HookTarget3();
+        target3.test()
     }
 }
 
