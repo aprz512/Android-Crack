@@ -15,3 +15,4 @@ dependencyResolutionManagement {
 rootProject.name = "EdxposedTest"
 include ':app'
 include ':hooktarge'
+include ':nativehooktarget'
