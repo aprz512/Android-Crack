@@ -3,7 +3,7 @@
 #include <jni.h>
 #include <cstring>
 
-extern "C" bool test_hook(const char *content) {
+__attribute__((visibility("hidden"))) bool test_hook(const char *content) {
     __android_log_print(4, "hook_so", "junk code");
     __android_log_print(4, "hook_so", "junk code");
     __android_log_print(4, "hook_so", "junk code");
