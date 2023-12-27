@@ -50,6 +50,7 @@ int main()
     uint64_t pbase;
     uint64_t extra_len;
     uint64_t extra_base;
+    uint64_t strtab_addr;
 
     for (size_t i = 0; i < phdr_num; i++)
     {
@@ -69,6 +70,12 @@ int main()
                 fileno(fp),
                 phdr->p_offset & (~PAGE_MASK));
 
+            // zero fill， 如果文件范围比实际大小要小，那么会映射额外的脏数据进来，需要清零
+            if ((len & PAGE_MASK))
+            {
+                memset((void *)(pbase + len), 0, PAGE_SIZE - (len & PAGE_MASK));
+            }
+
             printf("mapped addr: %08x, %08x\n", pbase, len);
 
             tmp = (unsigned char *)(((unsigned)pbase + len + PAGE_SIZE - 1) & (~PAGE_MASK));
@@ -82,6 +89,32 @@ int main()
                 printf("mapped addr: %08x, %08x\n", extra_base, extra_len);
             }
         }
+        else if (phdr->p_type == PT_DYNAMIC)
+        {
+            Elf64_Dyn *p_dyn = phdr->p_vaddr + BASE;
+            while (1)
+            {
+                if (p_dyn->d_tag == DT_STRTAB)
+                {
+                    // 处理字符串
+                    strtab_addr = BASE + p_dyn->d_un.d_ptr;
+                    printf("strtab addr: %08x\n", strtab_addr);
+                }
+                else if (p_dyn->d_tag == DT_NEEDED)
+                {
+                    // 处理依赖的so
+                    printf("needed so: %s\n", strtab_addr + p_dyn->d_un.d_ptr);
+                }
+
+                else if (p_dyn->d_tag == DT_NULL)
+                {
+                    // 后面无需处理
+                    break;
+                }
+
+                p_dyn++;
+            }
+        }
 
         phdr++;
     }
@@ -89,7 +122,7 @@ int main()
     free(ehdr);
     free(phdr);
     fclose(fp);
-    printf("mapped ok!!!");
+    printf("mapped ok!!!\n");
 
     return 0;
 }
