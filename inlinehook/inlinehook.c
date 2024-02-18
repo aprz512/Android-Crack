@@ -12,8 +12,8 @@ void __attribute__((naked)) hook_func()
 
     // 获取参数
     asm("ldr x0, [sp, #-0x58]");
-    asm("str x0,%0":"=m"(x0));
-    asm("str x1,%0":"=m"(x1));
+    asm("str x0,%0" : "=m"(x0));
+    asm("str x1,%0" : "=m"(x1));
 
     // 执行被覆盖的指令
     // .text:00000000000783D4 FF 43 01 D1                   SUB             SP, SP, #0x50           ; Alternative name is 'fopen'
@@ -58,7 +58,6 @@ int main()
 
     // getchar();
 
-
     // 指令是4字节的，使用 uint32，地址使用 unit64
 
     // STP X8, X0, [SP, #-0x60]  -> E8 03 3A A9
@@ -73,17 +72,16 @@ int main()
     // ADDR  -> 00 00 1f d6，这里要用64位
     (*(uint64_t *)(hook_addr + 12)) = hook_func;
 
-    // 被覆盖的指令操作了sp，所以需要还原 
+    // 被覆盖的指令操作了sp，所以需要还原
     // LDR X0, [SP, #-0x10]  -> E0 03 5F F8
     (*(uint32_t *)(hook_addr + 20)) = 0xF85F03E0;
-
 
     printf("hook_func = %p\n", hook_func);
 
     getchar();
 
     FILE *fp = fopen("/data/local/tmp/android_server64", "rb");
-    uint64_t data;
+    uint32_t data;
     fread(&data, 4, 1, fp);
     fclose(fp);
     printf("data = %p\n", data);
