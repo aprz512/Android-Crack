@@ -1,31 +1,16 @@
 # Android-Crack
 
-## practice 实践课程
-[p0](https://github.com/aprz512/Android-Crack/tree/master/practice/p0)
+## arm64汇编学习
+![Arm64汇编](https://www.lyldalek.top/category/Arm)
 
-[p1](https://github.com/aprz512/Android-Crack/tree/master/practice/p1)
+## so文件结构学习
+![Elf](https://www.lyldalek.top/article/elf)
 
-[p2](https://github.com/aprz512/Android-Crack/tree/master/practice/p2)
+## Xposed学习
+![Xposed](https://www.lyldalek.top/article/Xposed)
 
-[p3](https://github.com/aprz512/Android-Crack/tree/master/practice/p3)
+## frida学习
+![frida](https://www.lyldalek.top/article/Frida)
 
-[p4](https://github.com/aprz512/Android-Crack/tree/master/practice/p4)
-
-[p5](https://github.com/aprz512/Android-Crack/tree/master/practice/p5)
-
-[p6](https://github.com/aprz512/Android-Crack/tree/master/practice/p6)
-
-[p7](https://github.com/aprz512/Android-Crack/tree/master/practice/p7)
-
-[p8](https://github.com/aprz512/Android-Crack/tree/master/practice/p9)
-
-[p9](https://github.com/aprz512/Android-Crack/tree/master/practice/p9)
-
-[p10](https://github.com/aprz512/Android-Crack/tree/master/practice/p10)
-
-[p11](https://github.com/aprz512/Android-Crack/tree/master/practice/p11)
-
-继续更新中...
-
-
-
+## ida pro 学习
+![ida pro](https://www.lyldalek.top/article/IDA%20PRO)
