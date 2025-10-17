@@ -1,0 +1,158 @@
+digraph "DOT graph for eBPF program" {
+subgraph "cluster_0" {
+	style="dashed";
+	color="black";
+	label="func_0 ()";
+	fn_0_bb_0 [shape=Mdiamond,style=filled,label="ENTRY"];
+
+	fn_0_bb_2 [shape=record,style=filled,label="{\
+; int kprobe_exec(void * ctx):\l\
+; int\ kprobe_exec(void\ *ctx)\l\
+0: (bf) r6 = r1\l\
+| ; data.counter\ =\ c;\ \l\
+1: (18) r7 = map[id:78][0]+0\l\
+| 3: (61) r1 = *(u32 *)(r7 +0)\l\
+| ; c++;\ \l\
+4: (bf) r2 = r1\l\
+| 5: (07) r2 += 1\l\
+| 6: (63) *(u32 *)(r7 +0) = r2\l\
+| 7: (b7) r2 = 0\l\
+| ; struct\ data_t\ data\ =\ \{\};\ \l\
+8: (63) *(u32 *)(r10 -8) = r2\l\
+| 9: (63) *(u32 *)(r10 -12) = r2\l\
+| 10: (63) *(u32 *)(r10 -16) = r2\l\
+| 11: (63) *(u32 *)(r10 -20) = r2\l\
+| 12: (63) *(u32 *)(r10 -24) = r2\l\
+| 13: (63) *(u32 *)(r10 -28) = r2\l\
+| 14: (63) *(u32 *)(r10 -4) = r2\l\
+| ; data.counter\ =\ c;\ \l\
+15: (63) *(u32 *)(r10 -32) = r1\l\
+| ; data.pid\ =\ bpf_get_current_pid_tgid();\l\
+16: (85) call bpf_get_current_pid_tgid#275312\l\
+| ; data.pid\ =\ bpf_get_current_pid_tgid();\l\
+17: (63) *(u32 *)(r10 -40) = r0\l\
+| ; uid\ =\ bpf_get_current_uid_gid()\ &\ 0xFFFFFFFF;\l\
+18: (85) call bpf_get_current_uid_gid#276112\l\
+| ; data.uid\ =\ uid;\l\
+19: (63) *(u32 *)(r10 -36) = r0\l\
+| ; uid\ =\ bpf_get_current_uid_gid()\ &\ 0xFFFFFFFF;\l\
+20: (67) r0 \<\<= 32\l\
+| 21: (77) r0 \>\>= 32\l\
+| ; uid\ =\ bpf_get_current_uid_gid()\ &\ 0xFFFFFFFF;\l\
+22: (7b) *(u64 *)(r10 -48) = r0\l\
+| 23: (bf) r2 = r10\l\
+| 24: (07) r2 += -48\l\
+| ; p\ =\ bpf_map_lookup_elem(&my_config,\ &uid);\l\
+25: (18) r1 = map[id:75]\l\
+| 27: (85) call __htab_map_lookup_elem#321648\l\
+| 28: (15) if r0 == 0x0 goto pc+1\l\
+}"];
+
+	fn_0_bb_3 [shape=record,style=filled,label="{\
+; p\ =\ bpf_map_lookup_elem(&my_config,\ &uid);\l\
+29: (07) r0 += 56\l\
+}"];
+
+	fn_0_bb_4 [shape=record,style=filled,label="{\
+; p\ =\ bpf_map_lookup_elem(&my_config,\ &uid);\l\
+30: (18) r3 = map[id:78][0]+4\l\
+| ; if\ (p\ !=\ 0)\ \{\l\
+32: (15) if r0 == 0x0 goto pc+9\l\
+}"];
+
+	fn_0_bb_5 [shape=record,style=filled,label="{\
+; char\ a\ =\ p-\>message[0];\l\
+33: (71) r3 = *(u8 *)(r0 +0)\l\
+| 34: (67) r3 \<\<= 56\l\
+| 35: (c7) r3 s\>\>= 56\l\
+| ; bpf_printk(\"%d\",\ a);\ \ \ \ \ \ \ \ \l\
+36: (18) r1 = map[id:79][0]+0\l\
+| 38: (b7) r2 = 3\l\
+| 39: (bf) r8 = r0\l\
+| 40: (85) call bpf_trace_printk#-124304\l\
+| 41: (bf) r3 = r8\l\
+}"];
+
+	fn_0_bb_6 [shape=record,style=filled,label="{\
+42: (bf) r1 = r10\l\
+| 43: (07) r1 += -12\l\
+| 44: (b7) r2 = 12\l\
+| 45: (85) call bpf_probe_read_kernel#-136576\l\
+| ; if\ (c\ \<\ sizeof(message))\ \{\l\
+46: (61) r1 = *(u32 *)(r7 +0)\l\
+| ; if\ (c\ \<\ sizeof(message))\ \{\l\
+47: (25) if r1 \> 0xb goto pc+24\l\
+}"];
+
+	fn_0_bb_7 [shape=record,style=filled,label="{\
+; char\ a\ =\ message[c];\l\
+48: (18) r2 = map[id:78][0]+4\l\
+| 50: (0f) r2 += r1\l\
+| 51: (71) r3 = *(u8 *)(r2 +0)\l\
+| 52: (67) r3 \<\<= 56\l\
+| 53: (c7) r3 s\>\>= 56\l\
+| ; bpf_printk(\"%c\",\ a);\l\
+54: (18) r1 = map[id:79][0]+3\l\
+| 56: (b7) r2 = 3\l\
+| 57: (85) call bpf_trace_printk#-124304\l\
+| ; if\ (c\ \<\ sizeof(data.message))\ \{\l\
+58: (18) r1 = map[id:78][0]+0\l\
+| 60: (61) r1 = *(u32 *)(r1 +0)\l\
+| ; if\ (c\ \<\ sizeof(data.message))\ \{\l\
+61: (25) if r1 \> 0xb goto pc+10\l\
+}"];
+
+	fn_0_bb_8 [shape=record,style=filled,label="{\
+; if\ (c\ \<\ sizeof(data.message))\ \{\l\
+62: (bf) r2 = r10\l\
+| ; char\ a\ =\ data.message[c];\l\
+63: (07) r2 += -40\l\
+| 64: (0f) r2 += r1\l\
+| 65: (71) r3 = *(u8 *)(r2 +28)\l\
+| 66: (67) r3 \<\<= 56\l\
+| 67: (c7) r3 s\>\>= 56\l\
+| ; bpf_printk(\"%c\",\ a);\l\
+68: (18) r1 = map[id:79][0]+6\l\
+| 70: (b7) r2 = 3\l\
+| 71: (85) call bpf_trace_printk#-124304\l\
+}"];
+
+	fn_0_bb_9 [shape=record,style=filled,label="{\
+; bpf_get_current_comm(&data.command,\ sizeof(data.command));\l\
+72: (bf) r1 = r10\l\
+| 73: (07) r1 += -28\l\
+| ; bpf_get_current_comm(&data.command,\ sizeof(data.command));\l\
+74: (b7) r2 = 16\l\
+| 75: (85) call bpf_get_current_comm#276256\l\
+| 76: (bf) r4 = r10\l\
+| ; bpf_get_current_comm(&data.command,\ sizeof(data.command));\l\
+77: (07) r4 += -40\l\
+| ; bpf_perf_event_output(ctx,\ &output,\ BPF_F_CURRENT_CPU,\ \ &data,\ sizeof(data));\l\
+78: (bf) r1 = r6\l\
+| 79: (18) r2 = map[id:76]\l\
+| 81: (18) r3 = 0xffffffff\l\
+| 83: (b7) r5 = 40\l\
+| 84: (85) call bpf_perf_event_output#-122064\l\
+| ; return\ 0;\l\
+85: (b7) r0 = 0\l\
+| 86: (95) exit\l\
+}"];
+
+	fn_0_bb_1 [shape=Mdiamond,style=filled,label="EXIT"];
+
+	fn_0_bb_0:s -> fn_0_bb_2:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_2:s -> fn_0_bb_3:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_2:s -> fn_0_bb_4:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_3:s -> fn_0_bb_4:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_4:s -> fn_0_bb_5:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_4:s -> fn_0_bb_6:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_5:s -> fn_0_bb_6:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_6:s -> fn_0_bb_7:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_6:s -> fn_0_bb_9:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_7:s -> fn_0_bb_8:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_7:s -> fn_0_bb_9:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_8:s -> fn_0_bb_9:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_9:s -> fn_0_bb_1:n [style="solid,bold", color=black, weight=10, constraint=true];
+	fn_0_bb_0:s -> fn_0_bb_1:n [style="invis", constraint=true];
+}
+}
