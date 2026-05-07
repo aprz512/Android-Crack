@@ -1,0 +1,19 @@
+{
+  "//": "自定义关键词模板。用 --preset custom --keywords-file scripts/keywords_sample.json 加载",
+  "//_weights": "权重 5=决定性, 4=高价值, 3=中等, 2=弱信号, 1=噪音级。多命中 cap 3",
+  "//_example": "下面是一个'只找 ptrace 相关'的极简示例",
+
+  "ptrace": 5,
+  "PTRACE_ATTACH": 5,
+  "PTRACE_GETREGSET": 5,
+  "PTRACE_TRACEME": 5,
+  "PTRACE_DETACH": 5,
+  "PTRACE_SETREGSET": 5,
+  "PTRACE_SYSCALL": 5,
+  "NT_PRSTATUS": 5,
+  "BEEF": 5,
+  "waitpid": 4,
+  "__WALL": 4,
+  "TracerPid": 4,
+  "getppid": 3
+}
